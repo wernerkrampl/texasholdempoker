@@ -1,3 +1,5 @@
+import hand_values
+
 class Card:
     def __init__(self, suit, rank):
         self.suit = suit
@@ -6,25 +8,6 @@ class Card:
 
     def __str__(self):
         return f'{self.suit[0]}{self.rank[0]}'
-
-class Hand_values:
-    def __init__(self):
-        pass
-
-    def check_hand(self, hand):
-        # High card
-        # Pair
-        # Two pairs
-        # Three of a kind
-        # Straight
-        # Flush
-        # Full house
-        # Four of a kind
-        # Straight flush
-        # Royal flush
-
-    def high_card(self,hand):
-
 
 class Game:
     def __init__(self):
@@ -39,8 +22,18 @@ class Game:
             for rank in self.ranks:
                 self.deck.append(Card(suit, rank))
 
-        # Hand values declaration
-
+    def check_hand(self, player, hand):
+        # High card
+        # Pair
+        # Two pairs
+        # Three of a kind
+        # Straight
+        # Flush
+        # Full house
+        # Four of a kind
+        # Straight flush
+        # Royal flush
+        pass
 
 
 if __name__ == '__main__':
