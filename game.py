@@ -1,4 +1,6 @@
 import hand_values
+from hand_values import Three_of_a_kind, Two_pairs
+
 
 class Card:
     def __init__(self, suit, rank):
@@ -37,5 +39,8 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game()
-    game.print()
+
+    three_of_a_kind = Three_of_a_kind(None)
+    two_pairs = Two_pairs(None)
+
+    print(three_of_a_kind)
