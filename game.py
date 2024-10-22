@@ -43,5 +43,4 @@ if __name__ == '__main__':
     three_of_a_kind = Three_of_a_kind(None)
     two_pairs = Two_pairs(None)
 
-
     print(three_of_a_kind)
