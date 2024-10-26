@@ -1,5 +1,4 @@
-from src.hand_values import Three_of_a_kind, Two_pairs
-
+from hand_values import Three_of_a_kind, Two_pairs
 
 class Card:
     def __init__(self, suit, rank):

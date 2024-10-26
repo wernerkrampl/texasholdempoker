@@ -5,7 +5,7 @@ class Hand_values(ABC):
         self.cards = cards
         self.value = None
         return
-#   FIXME: This needs to be fixed
+#   TODO: This needs to be fixed
 #
 #    @property
 #    def value(self):
