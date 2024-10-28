@@ -1,6 +1,4 @@
 import unittest
-from cgitb import handler
-
 from src.hand_values import High_card, Pair, Two_pairs, Three_of_a_kind, Straight, Flush, Full_house, Four_of_a_kind, \
     Straight_flush, Royal_flush
 
