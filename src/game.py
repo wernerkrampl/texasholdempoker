@@ -1,5 +1,5 @@
-from hand_values import Three_of_a_kind, Two_pairs
-from card import Card
+from src.hand_values import Three_of_a_kind, Two_pairs
+from src.card import Card
 
 class Game:
     def __init__(self):
