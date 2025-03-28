@@ -13,3 +13,4 @@ parser.add_argument('-n', '--names', type = str, help = 'Comma-separated list of
 
 if __name__ == '__main__':
     args = parser.parse_args()
+    game = game.Game(args.mode, args.players, args.names)
