@@ -11,3 +11,6 @@ class Player(ABC):
             return True
         else:
             return False
+
+    def place_bet(self, bet_amount):
+        pass
