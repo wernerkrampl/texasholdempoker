@@ -9,7 +9,7 @@ class Game:
 
         # Suits and rank declaration
         self.suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-        self.ranks = ['2', '3', '4', '5', '6', '7', '8', '9','10','Jack', 'Queen', 'King','Ace']
+        self.ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
         # Create deck of cards
         self.deck = []
@@ -22,18 +22,7 @@ class Game:
     def add_players(self, players, names): #TODO
         pass
 
-    def check_hand(self, player, hand):
-        # High card
-        # Pair
-        # Two pairs
-        # Three of a kind
-        # Straight
-        # Flush
-        # Full house
-        # Four of a kind
-        # Straight flush
-        # Royal flush
-        pass
+
 
 
 

@@ -1,3 +1,5 @@
+# This classes won't be used for now. It might be used later in refactored version, so it stays for now.
+
 from abc import ABC, abstractmethod
 
 class Hand_values(ABC):

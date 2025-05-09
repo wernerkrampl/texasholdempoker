@@ -5,4 +5,13 @@ class Card:
         return
 
     def __str__(self):
-        return f'{self.suit[0]}{self.rank[0]}'
+        if self.rank == '11':
+            return f'{self.suit[0]}{"J"}'
+        elif self.rank == '12':
+            return f'{self.suit[0]}{"Q"}'
+        elif self.rank == '13':
+            return f'{self.suit[0]}{"K"}'
+        elif self.rank == '14':
+            return f'{self.suit[0]}{"A"}'
+        else:
+            return f'{self.suit[0]}{self.rank}'
