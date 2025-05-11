@@ -19,4 +19,5 @@ class TestCard(unittest.TestCase):
     def test_string_conversion(self):
         for i in range(len(self.suits)):
             for j in range(len(self.ranks)):
-                self.assertEqual(f'{self.suits[i][0]}{self.ranks[j][0]}',str(self.deck[i * 13 + j]))
+                self.assertEqual(f'{self.suits[i][0]}{self.ranks[j][0] if self.ranks[j] != '10' else '10'}',
+                str(self.deck[i * 13 + j]))

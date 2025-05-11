@@ -1,6 +1,7 @@
 import random
 
-from src.hand_values import Royal_flush
+from src.hand_table import Hand_table
+from src.hand_values import Royal_flush, Hand_values
 
 
 class Round:
@@ -13,16 +14,19 @@ class Round:
         self.community_cards = None
 
     def check_royal_flush(self, cards):
-        if not cards[0].suit == cards[1].suit == cards[2].suit == cards[3].suit == cards[4].suit:
+        hand_table = Hand_table(cards)
+        if not len(hand_table.table['10']) == len(hand_table.table['Jack']) == len(hand_table.table['Queen']) == \
+                len(hand_table.table['King']) == len(hand_table.table['Ace']) == 1:
             return False
-        if cards[0].rank == 10 and cards.rank[1] == 11 and cards[2].rank == 12 and cards[3].rank == 13 and \
-                cards[4].rank == 14:
+        if hand_table.table['10'][0].rank == hand_table.table['Jack'][0].rank == hand_table.table['Queen'][0].rank == \
+            hand_table.table['King'][0].rank == hand_table.table['Ace'][0].rank:
             return True
         else:
             return False
 
+
+
     def check_hand(self, cards):
-        sorted_cards = sorted(cards, key=lambda card: card.rank)
         on_hand = []
 
         # High card
@@ -34,11 +38,10 @@ class Round:
         # Full house
         # Four of a kind
         # Straight flush
-        # Royal flush
-        royal_flush = self.check_royal_flush(sorted_cards)
+        # 9: Royal flush
+        royal_flush = self.check_royal_flush(cards)
         if royal_flush:
             on_hand.append(9)
-
         return
 
     def betting(self):
