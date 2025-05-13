@@ -16,27 +16,76 @@ class Round:
     def check_royal_flush(self, table):
         if not len(table['10']) == len(table['Jack']) == len(table['Queen']) == \
                 len(table['King']) == len(table['Ace']) == 1:
-            return (False, None)
+            return False
         if table['10'][0].rank == table['Jack'][0].rank == table['Queen'][0].rank == \
             table['King'][0].rank == table['Ace'][0].rank:
-            return (True, None)
+            return True
         else:
-            return (False, None)
+            return False
 
     def check_straight_flush(self, table):
         flush_counter = 0
         possible_flush_suit = None
-        for card in ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']:
-            if len(table[card]) == 1 and possible_flush_suit == None:
+        for rank in ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']:
+            if len(table[rank]) == 1 and possible_flush_suit == None:
                 flush_counter += 1
-                possible_flush_suit = table[card][0].suit
-            elif len(table[card]) == 1 and possible_flush_suit == table[card][0].suit:
+                possible_flush_suit = table[rank][0].suit
+            elif len(table[rank]) == 1 and possible_flush_suit == table[rank][0].suit:
                 flush_counter += 1
             else:
                 flush_counter = 0
             if flush_counter == 5:
-                return (True, card)
-        return (False, None)
+                return True
+        return False
+
+    def check_four_of_a_kind(self,table):
+        for rank in table.keys():
+            if len(table[rank]) == 4:
+                return True
+        return False
+
+    def check_full_house(self,table):
+        triplet = False
+        pair = False
+        for rank in table.keys():
+            if len(table[rank]) == 3:
+                triplet = True
+            if len(table[rank]) == 2:
+                pair = True
+        return triplet and pair
+
+    def check_straight_flush(self, table):
+        flush_counter = 0
+        for rank in ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']:
+            if len(table[rank]) == 1:
+                flush_counter += 1
+            else:
+                flush_counter = 0
+            if flush_counter == 5:
+                return True
+        return False
+
+    def check_three_of_a_kind(self,table):
+        for rank in table.keys():
+            if len(table[rank]) == 3:
+                return True
+        return False
+
+    def check_two_pairs(self,table):
+        pair_one = False
+        pair_two = False
+        for rank in table.keys():
+            if len(table[rank]) == 2 and not pair_one:
+                pair_one = True
+            elif len(table[rank]) == 2 and not pair_two:
+                pair_two = True
+        return pair_one and pair_two
+
+    def check_pair(self,table):
+        for rank in table.keys():
+            if len(table[rank]) == 2:
+                return True
+        return False
 
     def check_hand(self, cards):
         on_hand = []
@@ -44,25 +93,44 @@ class Round:
         for card in cards:
             table[card.rank].append(card)
 
-        # High card
-        # Pair
-        # Two pairs
-        # Three of a kind
-        # Straight
-        # Flush
-        # Full house
-        # Four of a kind
+        # 0: High card
+        on_hand.append(0)
+
+        # 1: Pair
+        if self.check_pair(table):
+            on_hand.append(1)
+
+        # 2: Two pairs
+        if self.check_two_pairs(table):
+            on_hand.append(2)
+        # 3: Three of a kind
+        if self.check_three_of_a_kind(table):
+            on_hand.append(3)
+
+        # 4: Straight
+        if self.check_straight_flush(table):
+            on_hand.append(4)
+
+        # 5: Flush
+        if cards[0].suit == cards[1].suit == cards[2].suit == cards[3].suit == cards[4].suit:
+            on_hand.append(5)
+
+        # 6: Full house
+        if self.check_full_house(table):
+            on_hand.append(6)
+        # 7: Four of a kind
+        if self.check_four_of_a_kind(table):
+            on_hand.append(7)
 
         # 8: Straight flush
-        straight_flush, highest_card = self.check_straight_flush(table)
-        if straight_flush:
-            on_hand.append((8,highest_card))
+        if self.check_straight_flush(table):
+            on_hand.append(8)
 
         # 9: Royal flush
-        royal_flush, highest_card = self.check_royal_flush(table)
-        if royal_flush:
-            on_hand.append((9,highest_card))
-        return
+        if self.check_royal_flush(table):
+            on_hand.append(9)
+
+        return on_hand
 
     def betting(self):
         for i in range(len(self.players)):
