@@ -1,4 +1,3 @@
-from src.hand_values import Three_of_a_kind, Two_pairs
 from src.card import Card
 
 class Game:

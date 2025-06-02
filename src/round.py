@@ -1,7 +1,6 @@
 import random
 
 from src.hand_table import Hand_table
-from src.hand_values import Royal_flush, Hand_values
 
 
 class Round:

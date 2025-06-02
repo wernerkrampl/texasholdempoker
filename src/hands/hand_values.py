@@ -56,6 +56,9 @@ class Hand_values(ABC):
         else:
             return False
 
+    @abstractmethod
+    def equal_rank(self):
+        pass
 
 class High_card(Hand_values):
     def __init__(self, cards):
