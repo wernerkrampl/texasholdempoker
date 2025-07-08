@@ -86,12 +86,6 @@ class Round:
                 return True
         return False
 
-    def check_hand(self, cards):
-        on_hand = []
-        table = {key: [] for key in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']}
-        for card in cards:
-            table[card.rank].append(card)
-
         # 0: High card
         on_hand.append(0)
 

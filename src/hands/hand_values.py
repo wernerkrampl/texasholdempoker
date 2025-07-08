@@ -1,11 +1,8 @@
-# This classes won't be used for now. It might be used later in refactored version, so it stays for now.
-
 from abc import ABC, abstractmethod
 
 class Hand_values(ABC):
-    def __init__(self, cards):
-        self.cards = cards
-        self.value = None
+    def __init__(self, hand_table):
+        self.hand_table = hand_table
         return
 #   TODO: This needs to be fixed
 #
@@ -19,58 +16,6 @@ class Hand_values(ABC):
 
     def __str__(self):
         return self.__class__.__name__.replace('_', ' ')
-
-    def __eq__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value == other.value
-        else:
-            return False
-
-    def __ge__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value >= other.value
-        else:
-            return False
-
-    def __gt__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value > other.value
-        else:
-            return False
-
-    def __le__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value <= other.value
-        else:
-            return False
-
-    def __lt__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value < other.value
-        else:
-            return False
-
-    def __ne__(self, other):
-        if isinstance(other, Hand_values):
-            return self.value != other.value
-        else:
-            return False
-
-    @abstractmethod
-    def equal_rank(self):
-        pass
-
-class High_card(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
-        self.value = 0
-        return
-
-class Pair(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
-        self.value = 1
-        return
 
 class Two_pairs(Hand_values):
     def __init__(self, cards):

@@ -8,7 +8,7 @@ class Game:
 
         # Suits and rank declaration
         self.suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-        self.ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+        self.ranks = [i for i in range(2,15)]
 
         # Create deck of cards
         self.deck = []
