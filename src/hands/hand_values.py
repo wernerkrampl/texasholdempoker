@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 class Hand_values(ABC):
     def __init__(self, hand_table):
+        self.value = None
         self.hand_table = hand_table
         return
 #   TODO: This needs to be fixed
@@ -16,12 +17,6 @@ class Hand_values(ABC):
 
     def __str__(self):
         return self.__class__.__name__.replace('_', ' ')
-
-class Two_pairs(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
-        self.value = 2
-        return
 
 class Three_of_a_kind(Hand_values):
     def __init__(self, cards):

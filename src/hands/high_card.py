@@ -14,24 +14,23 @@ class High_card(Hand_values):
 
     def __eq__(self, other):
         if isinstance(other, Hand_values):
-            for i in range(5):
-                if self.sorted_cards[i].rank == other.sorted_cards[i].rank:
-                    continue
-                else:
-                    return False
-            return True
-        else:
             return False
+        for i in range(5):
+            if self.sorted_cards[i].rank == other.sorted_cards[i].rank:
+                continue
+            else:
+                return False
+        return True
+
 
     def __lt__(self, other):
-        if isinstance(other, Hand_values):
-            for i in range(5):
-                if self.sorted_cards[i].rank < other.sorted_cards[i].rank:
-                    return True
-                elif self.sorted_cards[i].rank > other.sorted_cards[i].rank:
-                    return False
-                else:
-                    continue
-            return False #In case they are equal
-        else:
+        if not isinstance(other, Hand_values):
             return False
+        for i in range(5):
+            if self.sorted_cards[i].rank < other.sorted_cards[i].rank:
+                return True
+            elif self.sorted_cards[i].rank > other.sorted_cards[i].rank:
+                return False
+            else:
+                continue
+        return False #In case they are equal

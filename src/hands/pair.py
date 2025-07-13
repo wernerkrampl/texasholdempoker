@@ -1,5 +1,4 @@
 from functools import total_ordering
-
 from src.hands.hand_values import Hand_values
 
 @total_ordering
@@ -7,16 +6,41 @@ class Pair(Hand_values):
     def __init__(self, cards):
         super().__init__(cards)
         self.value = 1
+        self.pair = None
+        self.sorted_kickers = []
+        for key in range(14, 1, -1):
+            if len(self.hand_table[key]) == 2:
+                self.pair = self.hand_table[key]
+            elif len(self.hand_table[key]) > 0:
+                self.sorted_kickers += self.hand_table[key]
         return
 
     def __eq__(self, other):
-        if isinstance(other, Hand_values):
-            return self.cards_ordered_by_rank[0].value == other.cards_ordered_by_rank[0].value
+        if not isinstance(other, Hand_values):
+            return False
+        if self.pair[0].rank == other.pair[0].rank:
+            for i in range(3):
+                if self.sorted_kickers[i].rank == other.sorted_kickers[i].rank:
+                    continue
+                else:
+                    return False
+            return True
         else:
             return False
 
     def __lt__(self, other):
-        if isinstance(other, Hand_values):
-            return self.cards_ordered_by_rank[0].value < other.cards_ordered_by_rank[0].value
-        else:
+        if not isinstance(other, Hand_values):
             return False
+        if self.pair[0].rank < other.pair[0].rank:
+            return True
+        elif self.pair[0].rank > other.pair[0].rank:
+            return False
+        else:
+            for i in range(3):
+                if self.sorted_kickers[i].rank < other.sorted_kickers[i].rank:
+                    return True
+                elif self.sorted_kickers[i].rank > other.sorted_kickers[i].rank:
+                    return False
+                else:
+                    continue
+        return False  # In case they are equal
