@@ -5,24 +5,9 @@ class Hand_values(ABC):
         self.value = None
         self.hand_table = hand_table
         return
-#   TODO: This needs to be fixed
-#
-#    @property
-#    def value(self):
-#        return self.value
-#
-#    @value.setter
-#    def value(self, value):
-#        self._value = value
 
     def __str__(self):
         return self.__class__.__name__.replace('_', ' ')
-
-class Three_of_a_kind(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
-        self.value = 3
-        return
 
 class Straight(Hand_values):
     def __init__(self, cards):
