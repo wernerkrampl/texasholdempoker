@@ -9,12 +9,6 @@ class Hand_values(ABC):
     def __str__(self):
         return self.__class__.__name__.replace('_', ' ')
 
-class Flush(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
-        self.value = 5
-        return
-
 class Full_house(Hand_values):
     def __init__(self, cards):
         super().__init__(cards)

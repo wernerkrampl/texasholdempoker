@@ -1,6 +1,13 @@
 import unittest
-from src.hands.hand_values import High_card, Pair, Two_pairs, Three_of_a_kind, Straight, Flush, Full_house, Four_of_a_kind, \
+
+from src.hands.flush import Flush
+from src.hands.hand_values import Full_house, Four_of_a_kind, \
     Straight_flush, Royal_flush
+from src.hands.high_card import High_card
+from src.hands.pair import Pair
+from src.hands.straight import Straight
+from src.hands.three_of_a_kind import Three_of_a_kind
+from src.hands.two_pairs import Two_pairs
 
 
 class TestHand_values(unittest.TestCase):
@@ -17,6 +24,7 @@ class TestHand_values(unittest.TestCase):
         self.royal_flush = Royal_flush(None)
         self.list_hand_values = [self.high_card, self.pair, self.two_pairs, self.three_of_a_kind,self.straight,
                                  self.flush, self.full_house, self.four_of_a_kind,self.straight_flush, self.royal_flush]
+
     def test_compare_hand_values(self):
         for i in range(len(self.list_hand_values)):
             for j in range(i, len(self.list_hand_values)):
