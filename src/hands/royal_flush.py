@@ -1,6 +1,7 @@
+from functools import total_ordering
 from src.hands.hand_values import Hand_values
 
-
+@total_ordering
 class Royal_flush(Hand_values):
     def __init__(self, cards):
         super().__init__(cards)

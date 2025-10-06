@@ -3,20 +3,29 @@ from src.hands.hand_values import Hand_values
 
 @total_ordering
 class Pair(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
+    def __init__(self, hand_table, pair, sorted_kickers):
+        super().__init__(hand_table)
         self.value = 1
-        self.pair = None
-        self.sorted_kickers = []
-        for key in range(14, 1, -1):
-            if len(self.hand_table[key]) == 2:
-                self.pair = self.hand_table[key]
-            elif len(self.hand_table[key]) > 0:
-                self.sorted_kickers += self.hand_table[key]
+        self.pair = pair
+        self.sorted_kickers = sorted_kickers
         return
 
+    @classmethod
+    def check_and_create(cls, hand_table):
+        pair = None
+        sorted_kickers = []
+        for key in range(14, 1, -1):
+            if len(hand_table[key]) == 2:
+                pair = hand_table[key]
+            elif len(hand_table[key]) > 0:
+                sorted_kickers += hand_table[key]
+        if not pair is None:
+            return cls(hand_table, pair, sorted_kickers)
+        else:
+            return None
+
     def __eq__(self, other):
-        if not isinstance(other, Hand_values):
+        if not isinstance(other, Pair):
             return False
         if self.pair[0].rank == other.pair[0].rank:
             for i in range(3):
@@ -29,7 +38,7 @@ class Pair(Hand_values):
             return False
 
     def __lt__(self, other):
-        if not isinstance(other, Hand_values):
+        if not isinstance(other, Pair):
             return False
         if self.pair[0].rank < other.pair[0].rank:
             return True
