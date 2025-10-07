@@ -3,17 +3,20 @@ from src.hands.hand_values import Hand_values
 
 @total_ordering
 class Royal_flush(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
+    def __init__(self, hand_table):
+        super().__init__(hand_table)
         self.value = 9
-        if len(self.hand_table[14]) == 1 and len(self.hand_table[13]) == 1 and \
-                len(self.hand_table[12]) == 1 and len(self.hand_table[11]) == 1 and len(self.hand_table[10]) == 1:
-            if self.hand_table[14][0].suit == self.hand_table[13][0].suit == self.hand_table[12][0].suit == \
-                self.hand_table[11][0].suit == self.hand_table[10][0].suit:
-                return
-            else:
-                return
         return
+
+    @classmethod
+    def check_and_create(cls, hand_table):
+        if len(hand_table[14]) == 1 and len(hand_table[13]) == 1 and \
+                len(hand_table[12]) == 1 and len(hand_table[11]) == 1 and len(hand_table[10]) == 1:
+            if hand_table[14][0].suit == hand_table[13][0].suit == hand_table[12][0].suit == \
+                    hand_table[11][0].suit == hand_table[10][0].suit:
+                return cls(hand_table)
+            else:
+                return None
 
     def __eq__(self, other):
         if not isinstance(other, Hand_values):
