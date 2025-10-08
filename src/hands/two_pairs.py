@@ -3,18 +3,27 @@ from src.hands.hand_values import Hand_values
 
 @total_ordering
 class Two_pairs(Hand_values):
-    def __init__(self, cards):
-        super().__init__(cards)
+    def __init__(self, hand_table, pairs, kicker):
+        super().__init__(hand_table)
         self.value = 2
-        self.pairs = []
-        self.kicker = None
-        for key in range(14, 1, -1):
-            if len(self.hand_table[key]) == 2:
-                self.pairs.append(self.hand_table[key])
-            elif len(self.hand_table[key]) == 1:
-                self.kicker = self.hand_table[key][0]
-                break #so it won't uselessly run
+        self.pairs = pairs
+        self.kicker = kicker
         return
+
+    @classmethod
+    def check_and_create(cls, hand_table):
+        pairs = []
+        kicker = None
+        for key in range(14, 1, -1):
+            if len(hand_table[key]) == 2:
+                pairs.append(hand_table[key])
+            elif len(hand_table[key]) == 1:
+                kicker = hand_table[key][0]
+                break  # so it won't uselessly run
+        if not kicker is None:
+            return cls(hand_table, pairs, kicker)
+        else:
+            return None
 
     def __eq__(self, other):
         if not isinstance(other, Hand_values):

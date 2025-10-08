@@ -7,19 +7,22 @@ from src.hands.two_pairs import Two_pairs
 
 class TestTwo_pair(unittest.TestCase):
     def setUp(self):
-        self.hand_1 = Two_pairs(Hand_table_generator.generate_hand_table([Card('Clubs',13),\
+        self.hand_1 = Two_pairs.check_and_create(Hand_table_generator.generate_hand_table(\
+                            [Card('Clubs',13),\
                             Card('Diamonds',13),\
                             Card('Hearts',12),\
                             Card('Spades',12),\
                             Card('Hearts',2)]))
 
-        self.hand_2 = Two_pairs(Hand_table_generator.generate_hand_table([Card('Clubs', 3),\
+        self.hand_2 = Two_pairs.check_and_create(Hand_table_generator.generate_hand_table(\
+                            [Card('Clubs', 3),\
                             Card('Diamonds', 11),\
                             Card('Hearts', 11),\
                             Card('Spades', 7),\
                             Card('Hearts', 7)]))
 
-        self.hand_3 = Two_pairs(Hand_table_generator.generate_hand_table([Card('Spades',13), \
+        self.hand_3 = Two_pairs.check_and_create(Hand_table_generator.generate_hand_table(\
+                            [Card('Spades',13), \
                             Card('Hearts', 13), \
                             Card('Diamonds', 12), \
                             Card('Clubs', 12), \
