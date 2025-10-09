@@ -7,6 +7,7 @@ class Player(ABC):
         self.hole_cards = None
         self.bet = None
         self.all_in = False
+        self.actions = []
 
     def can_bet_that_amount(self, bet_amount):
         if bet_amount <= self.credit:
@@ -16,3 +17,18 @@ class Player(ABC):
 
     def place_bet(self, bet_amount):
         pass
+
+    def action(self, allowed_actions):
+
+        # Returns either of:
+        # ('Call')
+        #('Raise',bet)
+        #('Fold')
+        #('All in',bet)
+        #('Check')
+
+        pass
+
+    def clear_actions(self):
+        self.actions = []
+        return
