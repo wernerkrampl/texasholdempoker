@@ -6,16 +6,38 @@ class Round:
         self.deck = deck
         self.dealer = dealer
         self.pot = 0 # This could be created later after the Setup stage, but I wanted to make it more clear here
+        self.actual_bet = 0
         self.half_blind = half_blind # Same comment as for self.pot
         self.community_cards = None
 
     def betting(self):
-        for i in range(len(self.players)):
-            player_number = (self.dealer + i + 3) % len(self.players)
-            action = self.players[player_number].action(self.minimal_bet)
+        player_number = (self.dealer + 3) % len(self.players)
+        still_betting = True
+        end_of_cycle = player_number #either player who last raised or, if nobody raised, it's the first player to make action
+        while still_betting:
+            if not self.players[player_number].folded:
+                action = self.players[player_number].action(self.minimal_bet)
+                if action[0] == 'Call':
+                    self.pot += action[1]
+                    print() # TODO: Finish the print
+                elif action[0] == 'Raise':
+                    self.pot += action[1]
+                    self.actual_bet = action[2]
+                    end_of_cycle = player_number
+                    print()  # TODO: Finish the print
+                elif action[0] == 'Fold':
+                    print() #TODO: Finish the print
+                elif action[0] == 'All in':
+                    self.pot += action[1]
+                    self.actual_bet = action[2]
+                elif action[0] == 'Check':
+                    print() #TODO: Finish the print
+
+            player_number = (player_number) + 1 % len(self.players)
+            if player_number == end_of_cycle:
+                still_betting = False
             #TODO Finish action
-            bet, self.minimal_bet = self.players[player_number].place_bet(self.minimal_bet)
-            self.pot += bet
+
 
     def proceed(self):
         # TODO: Finish

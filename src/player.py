@@ -6,8 +6,9 @@ class Player(ABC):
         self.credit = None
         self.hole_cards = None
         self.bet = None
-        self.all_in = False
+        self.all_in_amount = 0
         self.actions = []
+        self.folded = False
 
     def can_bet_that_amount(self, bet_amount):
         if bet_amount <= self.credit:
