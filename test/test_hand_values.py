@@ -1,11 +1,13 @@
 import unittest
 
 from src.hands.flush import Flush
-from src.hands.hand_values import Full_house, Four_of_a_kind, \
-    Straight_flush, Royal_flush
+from src.hands.four_of_a_kind import Four_of_a_kind
+from src.hands.full_house import Full_house
 from src.hands.high_card import High_card
 from src.hands.pair import Pair
+from src.hands.royal_flush import Royal_flush
 from src.hands.straight import Straight
+from src.hands.straight_flush import Straight_flush
 from src.hands.three_of_a_kind import Three_of_a_kind
 from src.hands.two_pairs import Two_pairs
 
