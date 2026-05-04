@@ -48,25 +48,22 @@ class Round:
         while not players_to_play_queue.empty():
             player = players_to_play_queue.get()
             action = player.action()
-            #call,raise, fold, all in
+            #check, bet, call, raise, fold, all in
+            while not isLegal(action,actions):
+                action = player.action()
+            
+            # TODO: old code that will be refactored
             if action[0] == 'Check':
-                if bet_occured:
-                    while action[0] == 'Check':
-                        action = player.action(self.minimal_bet)
-                else:
-                    players_played_queue.put(player)
-                    actions[player].append(action)
+                players_played_queue.put(player)
+                actions[player].append(action)
 
             elif action[0] == 'Bet':
-                while action[1] > player.credit:
-                    action = player.action(self.minimal_bet)
-                if
-                bet_occured = True
+                if bet_occured:
                 while not players_played_queue.empty():
                     players_to_play_queue.put(players_played_queue.get())
                 players_played_queue.put(player)
                 actions[player].append(action)
-
+                #NOTE: Pots management will be done at the end of the street
             elif action[0] == 'Call':
 
 
